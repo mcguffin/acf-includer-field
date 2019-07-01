@@ -1,0 +1,20 @@
+{
+  "acf": true,
+  "modules": {
+    "core": {},
+    "git": {
+      "git_host": false,
+      "git_repo": "mcguffin/acf-includer-field",
+      "git_user": "mcguffin"
+    },
+    "gulp": {}
+  },
+  "plugin_author": "J\u00f6rn Lund",
+  "plugin_author_uri": "https://github.com/mcguffin",
+  "plugin_name": "ACF Includer Field",
+  "plugin_namespace": "ACFIncluderField",
+  "plugin_slug": "acf_includer_field",
+  "plugin_slug_upper": "ACF_INCLUDER_FIELD",
+  "this_year": 2019,
+  "wp_plugin_slug": "acf-includer-field"
+}

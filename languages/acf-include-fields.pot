@@ -1,0 +1,35 @@
+# Copyright (C) 2019 Jörn Lund
+# This file is distributed under the same license as the ACF Includer Field plugin.
+msgid ""
+msgstr ""
+"Project-Id-Version: ACF Includer Field 0.0.1\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/acf-includer-field\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2019-07-01T11:55:26+00:00\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"X-Generator: WP-CLI 2.1.0\n"
+"X-Domain: acf-include-fields\n"
+
+#. Plugin Name of the plugin
+msgid "ACF Includer Field"
+msgstr ""
+
+#. Plugin URI of the plugin
+msgid "https://github.com/mcguffin/acf-includer-field"
+msgstr ""
+
+#. Description of the plugin
+msgid "An ACF Field Type to include other ACF Fields"
+msgstr ""
+
+#. Author of the plugin
+msgid "Jörn Lund"
+msgstr ""
+
+#. Author URI of the plugin
+msgid "https://github.com/mcguffin"
+msgstr ""

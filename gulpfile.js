@@ -9,7 +9,7 @@ const sourcemaps	= require( 'gulp-sourcemaps' );
 const sass			= require( 'gulp-sass' );
 const source		= require( 'vinyl-source-stream' );
 const uglify		= require( 'gulp-uglify' );
-const es			= require( 'event-stream ')
+const es			= require( 'event-stream')
 
 const package = require( './package.json' );
 

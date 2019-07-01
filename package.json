@@ -8,7 +8,7 @@
     "dev": "gulp dev",
     "build": "gulp build && npm run i18n",
     "release": "git add . && npm version",
-    "i18n": "node ./src/run/json-i18n.js acf-include-fields && wp i18n make-pot . languages/serial.pot --domain=acf-include-fields",
+    "i18n": "wp i18n make-pot . languages/acf-include-fields.pot --domain=acf-include-fields",
     "preversion": "",
     "version": "node ./src/run/release.js && npm run build && git add .",
     "postversion": ""
@@ -21,6 +21,14 @@
   "license": "ISC",
   "bugs": {
     "url": "https://False/mcguffin/acf-include-fields/issues"
+  },
+  "browserslist": [
+    "last 3 versions",
+    "> 0.25%",
+    "IE 10"
+  ],
+  "browserify-shim": {
+    "jquery": "global:jQuery"
   },
   "homepage": "https://False/mcguffin/acf-include-fields#readme",
   "devDependencies": {
@@ -36,7 +44,6 @@
     "event-stream": "^4.0.1",
     "gulp": "^4.0.2",
     "gulp-autoprefixer": "^6.1.0",
-    "gulp-browserify": "^0.5.1",
     "gulp-rename": "^1.4.0",
     "gulp-sass": "^4.0.2",
     "gulp-sourcemaps": "^2.6.5",
@@ -60,12 +67,7 @@
     "vinyl-buffer": "^1.0.1",
     "vinyl-source-stream": "^2.0.0"
   },
-  "dependencies": {
-    "fstream": "^1.0.12",
-    "jquery": "^1.12.4",
-    "rimraf": "^2.6.3",
-    "tar": "^4.4.8"
-  },
+  "dependencies": {},
   "engines": {
     "node": "12.4.0",
     "npm": "^6.9.0"
