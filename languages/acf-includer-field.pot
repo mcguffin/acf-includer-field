@@ -9,10 +9,10 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2019-07-01T11:55:26+00:00\n"
+"POT-Creation-Date: 2019-07-01T14:28:10+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.1.0\n"
-"X-Domain: acf-include-fields\n"
+"X-Domain: acf-includer-field\n"
 
 #. Plugin Name of the plugin
 msgid "ACF Includer Field"
@@ -32,4 +32,16 @@ msgstr ""
 
 #. Author URI of the plugin
 msgid "https://github.com/mcguffin"
+msgstr ""
+
+#: include/ACFIncluderField/Fields/IncluderField.php:19
+msgid "Include Fields"
+msgstr ""
+
+#: include/ACFIncluderField/Fields/IncluderField.php:47
+msgid "Field Group"
+msgstr ""
+
+#: include/ACFIncluderField/Fields/IncluderField.php:48
+msgid "Include all fields from selected Field Group"
 msgstr ""
