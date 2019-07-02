@@ -9,4 +9,5 @@
 .svn/
 .svnignore
 .sass-cache
+tmp/
 node_modules/

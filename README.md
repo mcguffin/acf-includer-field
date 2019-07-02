@@ -12,13 +12,13 @@ Installation
  - In WP Admin go to Settings / GitHub Updater / Install Plugin. Enter `mcguffin/acf-includer-field` as a Plugin-URI.
 
 ### Development
- - cd into your plugin directory
- - $ `git clone git@github.com:mcguffin/acf-includer-field.git`
- - $ `cd acf-includer-field`
+ #. cd into your plugin directory
+ #. $ `git clone git@github.com:mcguffin/acf-includer-field.git`
+ #. $ `cd acf-includer-field`
 
-Developing
-----------
-
+Development
+-----------
+Run `npm run dev` in a terminal
 
 Testing needed
 --------------

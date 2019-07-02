@@ -7,20 +7,24 @@
     "init": "",
     "dev": "gulp dev",
     "build": "gulp build && npm run i18n",
-    "release": "git add . && npm version",
-    "i18n": "wp i18n make-pot . languages/acf-include-fields.pot --domain=acf-include-fields",
+    "release":"npm run release:build && npm run release:github",
+    "release:build": "npm run i18n && node ./src/run/release.js",
+    "release:git": "VERSION=$(node -e 'console.log(require(\"./package.json\").version)') && git add . && git commit -m \"Release ${VERSION}\"",
+    "release:github":"git push && node ./src/run/release-github.js",
+    "release:wporg": "",
+    "i18n": "wp i18n make-pot . languages/acf-includer-field.pot --domain=acf-includer-field",
     "preversion": "",
     "version": "node ./src/run/release.js && npm run build && git add .",
     "postversion": ""
   },
   "repository": {
     "type": "git",
-    "url": "git+https://False/mcguffin/acf-include-fields.git"
+    "url": "git+https://github.com/mcguffin/acf-include-fields.git"
   },
   "author": "Jörn Lund",
   "license": "ISC",
   "bugs": {
-    "url": "https://False/mcguffin/acf-include-fields/issues"
+    "url": "https://github.com/mcguffin/acf-include-fields/issues"
   },
   "browserslist": [
     "last 3 versions",
@@ -30,7 +34,7 @@
   "browserify-shim": {
     "jquery": "global:jQuery"
   },
-  "homepage": "https://False/mcguffin/acf-include-fields#readme",
+  "homepage": "https://github.com/mcguffin/acf-include-fields#readme",
   "devDependencies": {
     "@babel/core": "^7.4.5",
     "@babel/plugin-proposal-class-properties": "^7.4.4",
