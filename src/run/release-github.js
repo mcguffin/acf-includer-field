@@ -6,67 +6,86 @@ const wp = require('./lib/wp-release.js');
 const fs = require('fs');
 const glob = require('glob');
 const git = require('simple-git')('.');
+const exec = require('child_process');
+const https = require('https');
 
 const package = require('../../package.json');
 
 let branch;
 let repo;
+let token;
 
+const make_remote_release = (url,data,token) => {
 
-const init = async () => git
+	return new Promise( resolve => {
+
+		let resp_data = '';
+		let req = https.request( url, {
+			// host: 'api.github.com',
+			// port: 443,
+			// path: `repos/${repo}/releases`,
+			method: 'POST',
+			headers: {
+//				'Authorization' : 'token ${token}',
+				'User-Agent' : 'Nodejs'
+			}
+		}, resp => {
+			resp.setEncoding('utf8');
+			resp.on('data',data => {
+				resp_data += data;
+			});
+			resp.on('end',() => {
+				resolve( resp_data );
+			})
+		});
+		req.write( JSON.stringify( data, null ) )
+		req.end()
+
+	}, err => {
+		throw(err);
+	} )
+}
+
+git
 	.listRemote(['--get-url'], (err,res) => {
 		repo = res.match(/git@github\.com:(.*)\.git/)[1];
 	})
 	.branch( (err,res) => {
 		branch = res.current;
-	});
+	})
+	.exec( () => {
+		//
+		let whoami = exec.execSync('whoami',{encoding:'utf8'}).replace(/\n$/,'');
+		token = exec.execSync(`security find-generic-password -a ${whoami} -s GithubAccessToken -w`,{encoding:'utf8'}).replace(/\n$/,'');
+	} )
+	.push()
+	.exec(() => {
+		const data = {
+			version:		package.version,
+			branch:			branch,
+			require_wp:		wp.read_header_tag('readme.txt', 'Requires at least' ),
+			max_wp:			wp.read_header_tag('readme.txt', 'Tested up to' ),
+			require_php:	wp.read_header_tag('readme.txt', 'Requires PHP' ),
+		}
 
-init().then();
+		const req_data = {
+			tag_name:			package.version,
+			target_commitish:	branch,
+			name:				package.version,
+			body:				`Release ${data.version} from ${data.branch}
 
-// git.branch( (err,res) => {
-// 	branch = res.current;
-// 	// ... add and commit
-//
-// 	const data = {
-// 		version:		package.version,
-// 		branch:			branch,
-// 		require_wp:		wp.read_header_tag('readme.txt', 'Requires at least' ),
-// 		max_wp:			wp.read_header_tag('readme.txt', 'Tested up to' ),
-// 		require_php:	wp.read_header_tag('readme.txt', 'Requires PHP' ),
-// 	}
-//
-// 	const req_data = {
-// 		tag_name:			package.version,
-// 		target_commitish:	branch,
-// 		name:				package.version,
-// 		body:				`Release ${data.version} from ${data.branch}
-//
-// Requires at least: ${data.require_wp}
-// Tested up to: ${data.max_wp}
-// Requires PHP: ${data.require_php}`,
-// 		draft:				false,
-// 		prerelease:			false
-// 	}
-// 	git.push( () => {
-//
-// 	});
-//
-//
-// });
-
-//
-//
-// tag_url = 'https://api.github.com/repos/%s/%s/releases?access_token=%s' % (repo_owner,repo_name,access_token)
-// print( repo_owner,repo_name )
-// # send api request
-// print('Create tag...')
-// tag_req = urllib.request.Request( tag_url,
-// 	data = json.dumps(request_data).encode('utf-8'),
-// 	headers = {
-// 		'Authorization' : 'token %s' % (access_token)
-// 	}
-// )
-
+Requires at least: ${data.require_wp}
+Tested up to: ${data.max_wp}
+Requires PHP: ${data.require_php}`,
+			draft:				false,
+			prerelease:			false
+		}
+		const username = repo.split('/')[0];
+		const api_url = `https://${username}:${token}@api.github.com/repos/${repo}/releases`
+		console.log(api_url)
+		let resp_data = make_remote_release( api_url, req_data, token )
+			.then(console.log)
+	})
 
 /*
 Release pipeline:
@@ -90,12 +109,3 @@ B. Release to wp.org
  - rm -rf tmp/
 
 */
-
-// upgrade plugin version
-// console.log(wp.find_package_files())
-// wp.write_header_tag( wp.find_package_file(), 'Version', version );
-// try {
-// 	wp.write_header_tag( './readme.txt', 'Stable tag', version );
-// } catch {
-// 	console.log('no readme.txt')
-// }
