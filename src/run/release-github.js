@@ -35,7 +35,7 @@ const make_remote_release = (url,data,token) => {
 				resp_data += data;
 			});
 			resp.on('end',() => {
-				resolve( resp_data );
+				resolve( JSON.parse(resp_data) );
 			})
 		});
 		req.write( JSON.stringify( data, null ) )
