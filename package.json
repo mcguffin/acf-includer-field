@@ -10,12 +10,9 @@
     "release": "npm run release:build && npm run release:github",
     "release:build": "npm run i18n && node ./src/run/release.js",
     "release:git": "VERSION=$(node -e 'console.log(require(\"./package.json\").version)') && git add . && git commit -m \"Release ${VERSION}\"",
-    "release:github": "git push && node ./src/run/release-github.js",
+    "release:github": "node ./src/run/release-github.js",
     "release:wporg": "",
     "i18n": "wp i18n make-pot . languages/acf-includer-field.pot --domain=acf-includer-field",
-    "preversion": "",
-    "version": "node ./src/run/release.js && npm run build && git add .",
-    "postversion": "",
     "rollback":"git reset --hard HEAD~ && git push origin +master"
   },
   "repository": {
