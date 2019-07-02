@@ -10,7 +10,7 @@ let self;
 self = module.exports = {
 	get_header_files: () => {
 		var files = [];
-		['readme.txt','*.php','src/scss/style.scss'].forEach(pattern => {
+		['*.php','src/scss/style.scss'].forEach(pattern => {
 			glob.sync(pattern,{}).forEach( file => {
 				if ( self.read_header_tag( file, 'Version' ) !== null ) {
 					files.push(file)

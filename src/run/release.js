@@ -9,30 +9,26 @@ const fs = require('fs');
 const glob = require('glob');
 
 // buuilding
-const localGulp = require('../../gulpfle.js');
+const localGulp = require('../../gulpfile.js');
 
-const old_version,
-	package_name,
-	identifier, version;
+// repo
+const git = require('simple-git')('.');
+let branch;
 
-var package;
 
-/**
- *	Increment Version number in all affected files
- */
-// get prev version
-package = require('../../package.json'); // relative to this dir ...
-old_version = package.version;
+let package = require('../../package.json'); // relative to this dir ...
 
-// check cli args
-identifier = process.argv.length > 2 ? process.argv[2] : 'patch';
+const identifier = process.argv.length > 2 ? process.argv[2] : 'patch';
 if ( ['major','minor','patch'].indexOf(identifier) === -1 ) {
 	throw "Invalid version identifier. Must be one of  ['major','minor','patch']";
 }
 
-// new version number
-version = semver.inc( old_version, identifier )
+const package_name = wp.get_package_name();
+const version = semver.inc( package.version, identifier )
 
+/**
+ *	Increment Version number in affected files
+ */
 // update package.json
 package.version = version;
 fs.writeFileSync( 'package.json', JSON.stringify( package, null, 2 ) ); // relative to process.cwd()
@@ -41,7 +37,8 @@ fs.writeFileSync( 'package.json', JSON.stringify( package, null, 2 ) ); // relat
 wp.get_header_files().forEach(file => {
 	wp.write_header_tag(file,'Version',version);
 });
-package_name = wp.get_package_name();
+// updte readme
+wp.write_header_tag('readme.txt','Stable tag',version);
 
 // update *.pot
 glob.sync('languages/*.pot').forEach( file => {
@@ -56,14 +53,23 @@ glob.sync('languages/*.pot').forEach( file => {
 });
 
 
-
-// gulp build
+/**
+ *	Build assets
+ */
 localGulp.build()
 
 
-
-// npm run release:git
-
+/**
+ *	Add, commit push
+ */
+// detect branch ...
+git.branch( (err,res) => {
+	branch = res.current;
+	// ... add and commit
+	git
+		.add('.')
+		.commit(`Release ${version} from ${branch}`)
+});
 
 
 /*
@@ -72,9 +78,9 @@ Release pipeline:
 A. Sources (Always)
 `npm run release [major|minor|patch]`
  - [x] Build i18n => npm run i18n
- - [ ] Increment versions (readme.txt, package.json, style.css, src/scss/style.scss, main plugin file, languages/xxx.pot)
- - [ ] Build assets => $ gulp build
- - [ ] commit -m "release x.y.z"
+ - [x] Increment versions (readme.txt, package.json, style.css, src/scss/style.scss, main plugin file, languages/xxx.pot)
+ - [x] Build assets => $ gulp build
+ - [x] commit -m "release x.y.z"
  - [ ] create git tag "x.y.z"
  - [ ] push
 

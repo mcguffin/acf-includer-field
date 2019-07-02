@@ -5,33 +5,67 @@ Set version in files
 const wp = require('./lib/wp-release.js');
 const fs = require('fs');
 const glob = require('glob');
+const git = require('simple-git')('.');
 
 const package = require('../../package.json');
 
+let branch;
+let repo;
 
-const message_data = {
-	require_wp:		wp.read_header_tag('readme.txt', 'Requires at least' ),
-	max_wp:			wp.read_header_tag('readme.txt', 'Tested up to' ),
-	require_php:	wp.read_header_tag('readme.txt', 'Requires PHP' ),
-}
-const request_data = {
-	tag_name:			"v%s" % (new_version),
-	target_commitish:	args.branch,
-	name:				"%s" % (new_version),
-	body:				body,
-	draft:				false,
-	prerelease:			false
-}
-tag_url = 'https://api.github.com/repos/%s/%s/releases?access_token=%s' % (repo_owner,repo_name,access_token)
-print( repo_owner,repo_name )
-# send api request
-print('Create tag...')
-tag_req = urllib.request.Request( tag_url,
-	data = json.dumps(request_data).encode('utf-8'),
-	headers = {
-		'Authorization' : 'token %s' % (access_token)
-	}
-)
+
+const init = async () => git
+	.listRemote(['--get-url'], (err,res) => {
+		repo = res.match(/git@github\.com:(.*)\.git/)[1];
+	})
+	.branch( (err,res) => {
+		branch = res.current;
+	});
+
+init().then();
+
+// git.branch( (err,res) => {
+// 	branch = res.current;
+// 	// ... add and commit
+//
+// 	const data = {
+// 		version:		package.version,
+// 		branch:			branch,
+// 		require_wp:		wp.read_header_tag('readme.txt', 'Requires at least' ),
+// 		max_wp:			wp.read_header_tag('readme.txt', 'Tested up to' ),
+// 		require_php:	wp.read_header_tag('readme.txt', 'Requires PHP' ),
+// 	}
+//
+// 	const req_data = {
+// 		tag_name:			package.version,
+// 		target_commitish:	branch,
+// 		name:				package.version,
+// 		body:				`Release ${data.version} from ${data.branch}
+//
+// Requires at least: ${data.require_wp}
+// Tested up to: ${data.max_wp}
+// Requires PHP: ${data.require_php}`,
+// 		draft:				false,
+// 		prerelease:			false
+// 	}
+// 	git.push( () => {
+//
+// 	});
+//
+//
+// });
+
+//
+//
+// tag_url = 'https://api.github.com/repos/%s/%s/releases?access_token=%s' % (repo_owner,repo_name,access_token)
+// print( repo_owner,repo_name )
+// # send api request
+// print('Create tag...')
+// tag_req = urllib.request.Request( tag_url,
+// 	data = json.dumps(request_data).encode('utf-8'),
+// 	headers = {
+// 		'Authorization' : 'token %s' % (access_token)
+// 	}
+// )
 
 
 /*
