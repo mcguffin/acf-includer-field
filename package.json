@@ -15,7 +15,8 @@
     "i18n": "wp i18n make-pot . languages/acf-includer-field.pot --domain=acf-includer-field",
     "preversion": "",
     "version": "node ./src/run/release.js && npm run build && git add .",
-    "postversion": ""
+    "postversion": "",
+    "rollback":"git reset --hard HEAD~ && git push origin +master"
   },
   "repository": {
     "type": "git",
