@@ -1,5 +1,5 @@
 {
-  "name": "acf-include-fields",
+  "name": "acf-include-field",
   "version": "0.0.1",
   "description": "",
   "private": true,
@@ -8,16 +8,16 @@
     "dev": "gulp dev",
     "build": "gulp build && npm run i18n",
     "i18n": "wp i18n make-pot . languages/acf-includer-field.pot --domain=acf-includer-field",
-    "rollback":"git reset --hard HEAD~ && git push origin +master"
+    "rollback": "git reset --hard HEAD~ && git push origin +master"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/mcguffin/acf-include-fields.git"
+    "url": "git+https://github.com/mcguffin/acf-include-field.git"
   },
   "author": "Jörn Lund",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/mcguffin/acf-include-fields/issues"
+    "url": "https://github.com/mcguffin/acf-include-field/issues"
   },
   "browserslist": [
     "last 3 versions",
@@ -27,7 +27,7 @@
   "browserify-shim": {
     "jquery": "global:jQuery"
   },
-  "homepage": "https://github.com/mcguffin/acf-include-fields#readme",
+  "homepage": "https://github.com/mcguffin/acf-include-field#readme",
   "devDependencies": {
     "@babel/core": "^7.4.5",
     "@babel/plugin-proposal-class-properties": "^7.4.4",
@@ -69,5 +69,28 @@
   "engines": {
     "node": "12.4.0",
     "npm": "^6.9.0"
+  },
+  "wporg": {
+    "type": "plugin",
+    "steps": [
+      "build",
+      "github"
+    ],
+    "build": {
+      "prebuild": [
+        "wp i18n make-pot . languages/acf-includer-field.pot --domain=acf-includer-field"
+      ],
+      "build": [
+        "gulp build"
+      ]
+    },
+    "github": {
+      "user": "mcguffin",
+      "host": "github.com"
+    },
+    "wporg": {
+      "svn": "https://plugins.svn.wordpress.org/acf-include-field/",
+      "assets": ".wporg"
+    }
   }
 }

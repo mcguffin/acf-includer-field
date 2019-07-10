@@ -25,11 +25,11 @@ Follow the standard [WordPress plugin installation procedere](http://codex.wordp
 
 = I found a bug. Where should I post it? =
 
-You can can either go into the Support forum, or in the [ACF Include Fields Repository](https://github.com//acf-include-fields).
+You can can either go into the Support forum, or in the [ACF Include Fields Repository](https://github.com//acf-include-field).
 
 = I'd like to suggest a feature. Where should I post it? =
 
-I personally prefer GitHub. The plugin code is here: [GitHub](https://github.com//acf-include-fields)
+I personally prefer GitHub. The plugin code is here: [GitHub](https://github.com//acf-include-field)
 (See above as well.)
 
 = I want to use the latest files. How can I do this? =
@@ -40,13 +40,13 @@ Use the GitHub Repo rather than the WordPress Plugin. Do as follows:
 
 2. in the console cd into Your 'wp-content/plugins' directory
 
-3. type `git clone git@github.com:/acf-include-fields.git`
+3. type `git clone git@github.com:/acf-include-field.git`
 
 4. If you want to update to the latest files (be careful, might be untested with your WP-Version) type `git pull`.
 
 = I found a bug and fixed it. How can I let You know? =
 
-Either post it on the [GitHub-repo](https://github.com//acf-include-fields) or—if you cloned the repository—send me a pull request.
+Either post it on the [GitHub-repo](https://github.com//acf-include-field) or—if you cloned the repository—send me a pull request.
 
 = Will you accept translations? =
 
