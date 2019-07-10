@@ -5,7 +5,7 @@ Plugin Name: ACF Includer Field
 Plugin URI: https://github.com/mcguffin/acf-includer-field
 Description: An ACF Field Type to include other ACF Fields
 Author: Jörn Lund
-Version: 0.0.1
+Version: 0.0.2
 Author URI: https://github.com/mcguffin
 License: GPL3
 Github Repository: mcguffin/acf-includer-field
