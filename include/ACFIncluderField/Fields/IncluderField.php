@@ -23,6 +23,7 @@ class IncluderField extends \acf_field {
 		);
 
 		add_action( 'acf/field_group/admin_enqueue_scripts',	[ $this, 'field_group_admin_enqueue_scripts' ] );
+
 		add_filter( 'acf/load_fields', [ $this, 'resolve_fields' ], 0, 2 );
 
 	}
@@ -81,10 +82,11 @@ class IncluderField extends \acf_field {
 		}
 
 		$return_fields = [];
-
 		foreach ( $fields as $field ) {
-			if ( 'includer-field' === $field['type'] ) {
+
+			if ( $this->name === $field['type'] ) {
 				$return_fields = array_merge( $return_fields, $this->resolve_field( $field ) );
+
 			} else {
 				$return_fields[] = $field;
 			}
@@ -96,12 +98,17 @@ class IncluderField extends \acf_field {
 	/**
 	 *	Resolve Includer Field: turn field into many
 	 *
-	 *	@return array
+	 *	@param array $field Includer Field to resolve
+	 *	@return array Fields
 	 */
 	private function resolve_field( $field ) {
 
 		$ret = [];
-		$include_fields = acf_get_fields( $field['field_group_key']  );
+		$parent = acf_get_field_group( $field['field_group_key'] );
+		if ( isset( $field['parent_layout'] ) ) {
+			$parent['parent_layout'] = $field['parent_layout'];
+		}
+		$include_fields = acf_get_fields( $parent  );
 
 		foreach ( $include_fields as $include_field ) {
 

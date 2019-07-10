@@ -15,12 +15,14 @@ use ACFIncluderField\Fields;
 
 class Core extends Plugin {
 
+	private $includer_field = null;
+
 	/**
 	 *	@inheritdoc
 	 */
 	protected function __construct() {
 
-		add_action( 'acf/include_field_types', 	array( $this, 'init_includer_field' ) );
+		add_action( 'acf/include_field_types', [ $this, 'init_includer_field' ] );
 
 		$args = func_get_args();
 
@@ -33,7 +35,7 @@ class Core extends Plugin {
 	 */
 	public function init_includer_field() {
 		// initialize
-		new Fields\IncluderField();
+		$this->includer_field = new Fields\IncluderField();
 
 	}
 
