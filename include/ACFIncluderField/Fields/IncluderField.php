@@ -5,6 +5,7 @@ namespace ACFIncluderField\Fields;
 // exit if accessed directly
 if( ! defined( 'ABSPATH' ) ) exit;
 
+use ACFIncluderField\Asset;
 use ACFIncluderField\Core;
 
 class IncluderField extends \acf_field {
