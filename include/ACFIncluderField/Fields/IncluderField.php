@@ -60,13 +60,9 @@ class IncluderField extends \acf_field {
 	 */
 	public function field_group_admin_enqueue_scripts() {
 
-		$core = Core\Core::instance();
-
-		$handle = $core->get_slug().'-field-group';
-
-		// register & include CSS
-		wp_register_style( $handle, $core->get_asset_url('css/acf-field-group.css'), array('acf-field-group'), $core->get_version() );
-		wp_enqueue_style( $handle );
+		Asset\Asset::get( 'css/acf-field-group.css' )
+			->deps( 'acf-field-group' )
+			->enqueue();
 
 	}
 

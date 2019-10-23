@@ -1,0 +1,13 @@
+{
+  "name": "mcguffin/acf-includer-field",
+  "description": "ACF Includer Field",
+  "keywords": [
+    "WordPress",
+    "Plugin"
+  ],
+  "homepage": "git@github.com:mcguffin/acf-include-field.git",
+  "type": "wordpress-plugin",
+  "require": {
+    "php": ">=5.6.0"
+  }
+}

@@ -11,11 +11,10 @@ if ( ! defined('ABSPATH') ) {
 	die('FU!');
 }
 
+use ACFIncluderField\Asset;
 use ACFIncluderField\Fields;
 
-class Core extends Plugin {
-
-	private $includer_field = null;
+class Core extends Plugin implements CoreInterface {
 
 	/**
 	 *	@inheritdoc
@@ -25,10 +24,9 @@ class Core extends Plugin {
 		add_action( 'acf/include_field_types', [ $this, 'init_includer_field' ] );
 
 		$args = func_get_args();
-
 		parent::__construct( ...$args );
-
 	}
+
 
 	/**
 	 *	@action acf/include_field_types
@@ -38,28 +36,5 @@ class Core extends Plugin {
 		$this->includer_field = new Fields\IncluderField();
 
 	}
-
-
-	/**
-	 *	Get asset url for this plugin
-	 *
-	 *	@param	string	$asset	URL part relative to plugin class
-	 *	@return string URL
-	 */
-	public function get_asset_url( $asset ) {
-		return plugins_url( $asset, $this->get_plugin_file() );
-	}
-
-
-	/**
-	 *	Get asset url for this plugin
-	 *
-	 *	@param	string	$asset	URL part relative to plugin class
-	 *	@return string URL
-	 */
-	public function get_asset_path( $asset ) {
-		return $this->get_plugin_dir() . '/' . preg_replace( '/^(\/+)/', '', $asset );
-	}
-
 
 }
