@@ -25,7 +25,7 @@ class IncluderField extends \acf_field {
 
 		add_action( 'acf/field_group/admin_enqueue_scripts',	[ $this, 'field_group_admin_enqueue_scripts' ] );
 
-		add_filter( 'acf/load_fields', [ $this, 'resolve_fields' ], 0, 2 );
+		add_filter( 'acf/load_fields', [ $this, 'resolve_fields' ], 5, 2 );
 
 	}
 
