@@ -5,7 +5,7 @@
     "WordPress",
     "Plugin"
   ],
-  "homepage": "git@github.com:mcguffin/acf-include-field.git",
+  "homepage": "git@github.com:mcguffin/acf-includer-field.git",
   "type": "wordpress-plugin",
   "require": {
     "php": ">=5.6.0"

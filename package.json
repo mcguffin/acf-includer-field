@@ -1,5 +1,5 @@
 {
-  "name": "acf-include-field",
+  "name": "acf-includer-field",
   "version": "0.0.2",
   "description": "ACF Field acting as a placeholder for other ACF Fields",
   "private": true,
@@ -15,12 +15,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/mcguffin/acf-include-field.git"
+    "url": "git+https://github.com/mcguffin/acf-includer-field.git"
   },
   "author": "Jörn Lund",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/mcguffin/acf-include-field/issues"
+    "url": "https://github.com/mcguffin/acf-includer-field/issues"
   },
   "browserslist": [
     "last 3 versions",
@@ -41,7 +41,7 @@
       },
       "git": {
         "user": "mcguffin",
-        "remote": "git@github.com:mcguffin/acf-include-field.git"
+        "remote": "git@github.com:mcguffin/acf-includer-field.git"
       },
       "test": {
         "components": {},
@@ -57,7 +57,7 @@
     "author_uri": "",
     "year": 2019
   },
-  "homepage": "https://github.com/mcguffin/acf-include-field#readme",
+  "homepage": "https://github.com/mcguffin/acf-includer-field#readme",
   "devDependencies": {
     "@babel/core": "^7.5.4",
     "@babel/plugin-proposal-class-properties": "^7.5.0",
@@ -103,7 +103,7 @@
       "host": "github.com"
     },
     "wporg": {
-      "svn": "https://plugins.svn.wordpress.org/acf-include-field/",
+      "svn": "https://plugins.svn.wordpress.org/acf-includer-field/",
       "assets": ".wporg"
     }
   }
