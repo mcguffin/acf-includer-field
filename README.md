@@ -1,7 +1,10 @@
 ACF Includer Field
 ==================
 
+**This plugin is no longer maintained.** The Includer field is now part of [ACF WP Objects](https://github.com/mcguffin/acf-wp-objects).
+
 Reuse ACF Field Groups.
+
 
 
 Installation
